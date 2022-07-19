@@ -17,4 +17,4 @@ Per farlo interfacciare con Django ho fatto tutti i settaggi iniziali, quindi:
 
 Per visualizzare l'output, l'ho inserito dentro un dizionario e poi visualizzato nel file parser.html 
 
-Volevo utilizzare anche deepparse ma non permetteva di installarlo, con essa avrei utilizzate delle chiamate a funzione per fare il parsing degli indirizzi 
+Volevo utilizzare anche deepparse ma non mi permetteva di installarlo, con essa avrei utilizzato delle chiamate a funzione per fare il parsing degli indirizzi 
