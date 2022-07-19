@@ -11,10 +11,13 @@
   </head>
   <body>
     <div class="container"> 
-      <h2>Address</h2>
+        <div class="p-5 text-center bg-light">
+            <h2 class="mb-3">Address</h2>
+        </div>
         <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" method="post">
             {% csrf_token %}
-            <input type="text" name="name" class="form-control" placeholder="Address..." aria-label="Search" ><br><button type="submit" class="btn btn-primary">Send</button>
+            <input type="text" name="name" class="form-control shadow" placeholder="Address..." aria-label="Search" ><br><button type="submit" class="btn btn-primary">Send</button>
+            <hr>
         </form>
         <div class="table-responsive">
             <table class="table table-striped table-sm">
@@ -33,9 +36,13 @@
                 {% endfor %}
                 </thead>
             </table>
+            <hr>
         </div>
         <br>
-        <h3>Json Address :</h3>
+        <div class="p-5 text-center bg-light">
+            <h3>Json Address :</h3>
+        </div>
+        
         <h4> {{ elem_json }}</h4>       
     </div>
   </body>
