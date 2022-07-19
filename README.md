@@ -16,3 +16,5 @@ Per farlo interfacciare con Django ho fatto tutti i settaggi iniziali, quindi:
   3. Impostare le views ( io in Flask le ho viste come route ) 
 
 Per visualizzare l'output, l'ho inserito dentro un dizionario e poi visualizzato nel file parser.html 
+
+Volevo utilizzare anche deepparse ma non mi permetteva di installarlo, con essa avrei utilizzato delle chiamate a funzione per fare il parsing degli indirizzi 
