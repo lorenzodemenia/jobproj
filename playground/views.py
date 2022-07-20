@@ -91,7 +91,7 @@ def add_parse(request):
             tmp = {'error':1}
             elem_json = json.dumps(tmp)
             data['elem_json'] = elem_json
-            data["data"] = [['error'],[1]]
+            data["data"] = [['error',1]]
             data["title"] = ("Title","Object")
             return render(request, 'parser.html', data)
     else:
