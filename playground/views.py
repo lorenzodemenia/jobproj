@@ -2,19 +2,25 @@ from django.shortcuts import render
 from django.http import HttpResponse
 import json 
 
+def find_cap(split_list):
+    count = 0
+    for first_step in split_list:
+        count += 1
+        if first_step.isdigit() and len(first_step) >= 5:
+            return count
+    return 0 
+
+
 # la stessa funzione ma che ritorna un dizionario convertito in json , in modo tale che l'output sia come richiesto dopo
 def parser_one_json(text):
     sl = text.replace(", ", " ")
     split_list = sl.rsplit(" ")  # divide la stringa in sottostringhe ogni volta che trova lo spazio e le inserisce
                                    # in una lista
     end_list = {}
-    count = 0
+    
     # trovo la posizione dell'unico elemento che conosco la dimensione, siccome il cap è sempre di 5 numeri e quindi mi
     # basta contare fino a dove trovo una stringa di soli caratteri (isdigit()) e di dimensione 5
-    for first_step in split_list:
-        count += 1
-        if first_step.isdigit() and len(first_step) >= 5:
-            break
+    count = find_cap(split_list)
 
     count_second = 0
     tmp = ""
@@ -46,6 +52,7 @@ def parser_one_json(text):
         elif count_second == count+2:
 
             end_list["provinica"] = sl   # inserisce la provinica
+    end_list['error'] = 0
 
     return end_list
 
@@ -59,12 +66,34 @@ def convert_dictionary_list(diction):
     
     return dir_elem
 
+
+def check_is_correct(text):
+    sl = text.replace(", ", " ")
+    split_list = sl.rsplit(" ") 
+
+    count = 0 
+    for sp in split_list:
+        count += 1 
+        if count == 1 and sp.lower() != 'via':
+            return False
+        elif find_cap(split_list) == 0:
+            return False
+    
+    return True
+
 def add_parse(request):
     data = {}
     title = {}
     
     if request.method == 'POST':
         elem = request.POST.get('name', None)
+        if check_is_correct(elem) == False:
+            tmp = {'error':1}
+            elem_json = json.dumps(tmp)
+            data['elem_json'] = elem_json
+            data["data"] = [['error'],[1]]
+            data["title"] = ("Title","Object")
+            return render(request, 'parser.html', data)
     else:
         elem = ''
     tmp = parser_one_json(elem)
